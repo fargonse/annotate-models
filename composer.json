@@ -1,0 +1,16 @@
+{
+    "name": "fargonse/annotate",
+    "description": "A simple Laravel package to annotate the table structure in its model",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gonzalo Faro",
+            "email": "farogonzalo@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^5.1"
+    }
+}
