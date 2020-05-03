@@ -12,5 +12,15 @@
     "require": {},
     "require-dev": {
         "orchestra/testbench": "^5.1"
+    },
+    "autoload": {
+        "psr-4":{
+            "Fargonse\\Annotate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4":{
+            "Fargonse\\Annotate\\Tests\\": "tests/"
+        }
     }
 }
