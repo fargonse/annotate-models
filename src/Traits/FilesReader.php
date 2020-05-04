@@ -14,9 +14,9 @@ class FilesReader
 
     
     /**
-     * Create a new ModelsReader instance
+     * Create a new FilesReader instance
      *
-     * @param   Class   $container
+     *
      * @param   String  $path
      * @return  void
      */

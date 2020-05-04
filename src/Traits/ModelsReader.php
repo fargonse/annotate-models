@@ -2,27 +2,25 @@
 
 namespace Fargonse\Annotate\Traits;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class ModelsReader
 {
     /**
-     * The Container Class
-     */
-    protected $container = null;
-
-
-    /**
-     * The FilesReader Class
+     * FilesReader Class - Get the file from directory
      */
     protected $filesReader = null;
 
     /**
-     * The FilesReader Class
+     * ClassNameBuilder Class - Builds the name of the class from a filename
      */
     protected $classNameBuilder = null;
 
+
+    /**
+     * Class that determines if class it's a Eloquent Model
+     */
+    protected $modelDeterminer = null;
 
     /**
      * Create a new ModelsReader instance
@@ -33,8 +31,9 @@ class ModelsReader
      */
     public function __construct($container = null, $path = null)
     {
-        $this->filesReader = new FilesReader( $path ?? app_path() );
+        $this->filesReader = new FilesReader( $path );
         $this->classNameBuilder = new ClassNameBuilder( $container );
+        $this->modelDeterminer = new ModelDeterminer();
     }
 
 
@@ -50,30 +49,11 @@ class ModelsReader
                 return $this->classNameBuilder->BuildClassNameFromFile($file);
             })
             ->filter(function ($class) {
-                return $this->classIsModel($class);
+                return $this->modelDeterminer->classIsModel($class);
             });
 
         return $models->values();
 
-    }
-
-
-    /**
-     * Determines if the class is a Eloquent Model Subclass $ it's not an abstract class
-     *
-     * @param   String  $class
-     * @return  Bool
-     */
-    protected function classIsModel($class): Bool
-    {
-        $isValidModel = false;
-        if (class_exists($class)) {
-            $reflection = new \ReflectionClass($class);
-            $isValidModel = $reflection->isSubclassOf(Model::class) &&
-            !$reflection->isAbstract();
-        }
-
-        return $isValidModel;
     }
 
 }
