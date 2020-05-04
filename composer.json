@@ -14,13 +14,20 @@
         "orchestra/testbench": "^5.1"
     },
     "autoload": {
-        "psr-4":{
+        "psr-4": {
             "Fargonse\\Annotate\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-4":{
+        "psr-4": {
             "Fargonse\\Annotate\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fargonse\\Annotate\\AnnotateModelsBaseServiceProvider"
+            ]
         }
     }
 }
