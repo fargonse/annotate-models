@@ -13,12 +13,13 @@ class ModelsReader
      */
     protected $container = null;
 
-    /**
-     * The Application Path
-     */
-    protected $path = null;
 
-    
+    /**
+     * The FilesReader Class
+     */
+    protected $filesReader = null;
+
+
     /**
      * Create a new ModelsReader instance
      *
@@ -29,7 +30,7 @@ class ModelsReader
     public function __construct($container = null, $path = null)
     {
         $this->container = $container ?? \Illuminate\Container\Container::class;
-        $this->path = $path ?? app_path();
+        $this->filesReader = new FilesReader( $path ?? app_path() );
     }
 
 
@@ -40,7 +41,7 @@ class ModelsReader
      */
     public function getAllModelsFromPath(): Collection
     {
-        $models = $this->getFilesFromPath($this->path)
+        $models = $this->filesReader->getFilesFromPath()
             ->map(function ($file) {
                 return $this->returnClassFromFile($file);
             })
@@ -50,18 +51,6 @@ class ModelsReader
 
         return $models->values();
 
-    }
-
-
-    /**
-     * Returns all files from specific path
-     *
-     * @param   String  $path
-     * @return  Collection
-     */
-    protected function getFilesFromPath($path): Collection
-    {
-        return collect(File::allFiles($path));
     }
 
 
