@@ -10,7 +10,7 @@ class ModelsReaderTest extends TestCase
     /** @test */
     public function getAllModels()
     {
-        $fakeContainer = \Fargonse\Annotate\Tests\Fakers\ContainerFake::class;
+        $fakeContainer = ModelsContainerFake::class;
 
         $reader = new ModelsReader( $fakeContainer, 'tests' );
 
@@ -21,4 +21,17 @@ class ModelsReaderTest extends TestCase
         $this->assertEquals($models[0], '\\Fargonse\\Annotate\\Tests\\TestModels\\Test');
     }
 
+}
+
+class ModelsContainerFake
+{
+    public static function getInstance(){
+        return new ModelsContainerInstance;
+    }
+}
+
+class ModelsContainerInstance{
+    public function getNamespace(){
+        return "Fargonse\\Annotate\\Tests\\";
+    }
 }
