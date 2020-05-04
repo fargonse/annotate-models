@@ -4,7 +4,7 @@ namespace Fargonse\Annotate\Tests\Unit;
 
 use Fargonse\Annotate\Traits\ClassNameBuilder;
 use Illuminate\Support\Facades\File;
-use Orchestra\Testbench\TestCase;
+use Fargonse\Annotate\Tests\TestCase;
 
 class ClassNameBuilderTest extends TestCase
 {

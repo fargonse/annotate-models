@@ -3,7 +3,7 @@
 namespace Fargonse\Annotate\Tests\Unit;
 
 use Fargonse\Annotate\Traits\ModelsReader;
-use Orchestra\Testbench\TestCase;
+use Fargonse\Annotate\Tests\TestCase;
 
 class ModelsReaderTest extends TestCase
 {
