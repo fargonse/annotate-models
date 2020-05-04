@@ -4,7 +4,6 @@ namespace Fargonse\Annotate\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
 
 class ModelsReader
 {
@@ -19,6 +18,11 @@ class ModelsReader
      */
     protected $filesReader = null;
 
+    /**
+     * The FilesReader Class
+     */
+    protected $classNameBuilder = null;
+
 
     /**
      * Create a new ModelsReader instance
@@ -29,8 +33,8 @@ class ModelsReader
      */
     public function __construct($container = null, $path = null)
     {
-        $this->container = $container ?? \Illuminate\Container\Container::class;
         $this->filesReader = new FilesReader( $path ?? app_path() );
+        $this->classNameBuilder = new ClassNameBuilder( $container );
     }
 
 
@@ -43,7 +47,7 @@ class ModelsReader
     {
         $models = $this->filesReader->getFilesFromPath()
             ->map(function ($file) {
-                return $this->returnClassFromFile($file);
+                return $this->classNameBuilder->BuildClassNameFromFile($file);
             })
             ->filter(function ($class) {
                 return $this->classIsModel($class);
@@ -53,29 +57,6 @@ class ModelsReader
 
     }
 
-
-    /**
-     * Returns class from specific file
-     *
-     * @param   String  $file
-     * @return  String
-     */
-    protected function returnClassFromFile($file): String
-    {
-        $relativePathName = $file->getRelativePathName();
-
-        $class = sprintf('\%s%s',
-            $this->container::getInstance()->getNamespace(),
-            strtr(
-                substr($relativePathName, 0, strrpos($relativePathName, '.')),
-                '/',
-                '\\'
-            )
-        );
-
-        return $class;
-
-    }
 
     /**
      * Determines if the class is a Eloquent Model Subclass $ it's not an abstract class
