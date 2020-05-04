@@ -12,7 +12,9 @@ class AnnotateModelsBaseServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->commands([
+            Console\ProcessCommand::class,
+        ]);
     }
 
 }
