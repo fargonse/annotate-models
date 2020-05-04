@@ -10,11 +10,11 @@ class ClassNameBuilder
     protected $container = null;
 
     /**
-     * Create a new ModelsReader instance
+     * Create a new ClassNameBuilder instance
      *
      * @param   Class   $container
-     * @param   String  $path
      * @return  void
+     * 
      */
     public function __construct($container = null)
     {
@@ -22,9 +22,9 @@ class ClassNameBuilder
     }
 
     /**
-     * Returns class from specific file
+     * Builds the Class Name from specific file and returns it
      *
-     * @param   String  $file
+     * @param   File  $file
      * @return  String
      */
     public function BuildClassNameFromFile( $file ): String
