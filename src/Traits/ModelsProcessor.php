@@ -3,6 +3,7 @@
 namespace Fargonse\Annotate\Traits;
 
 use Illuminate\Support\Collection;
+use Fargonse\Annotate\Builders\SchemaGetterFactory;
 
 class ModelsProcessor
 {
@@ -30,8 +31,12 @@ class ModelsProcessor
      */
     public function processModels()
     {
+        $schemaGetter = ( new SchemaGetterFactory )->getSchemaGetter();
+
         foreach ($this->models as $model) {
-            $table = (new ModelTableNameGetter( $model["class"] ))->getTableName();
+            $table = ModelTableNameGetter::getTableName( $model["class"] );
+
+            $tableStructure = $schemaGetter->getTableSchema( $table );
         }
         /*
             foreach models{
