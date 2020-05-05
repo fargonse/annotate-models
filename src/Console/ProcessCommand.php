@@ -12,6 +12,20 @@ class ProcessCommand extends Command
 
     public function handle()
     {
-        
+        // Get all Models
+        $models = ( new ModelsReader )->getAllModelsFromPath();
+
+        dd($models);
+
+        //Annotate Models
+        /*
+            foreach models{
+                tabla = ObtenerTabla(model)
+                estructura = ObtenerEstructura(tabla)
+                descripcion = ConvertirEstructuraATexto( estructura )
+                ActualizarArchivoModelo( descripcion )
+            }
+        */
+
     }
 }

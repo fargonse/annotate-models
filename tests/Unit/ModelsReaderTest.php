@@ -18,7 +18,11 @@ class ModelsReaderTest extends TestCase
 
         $this->assertCount(1, $models);
 
-        $this->assertEquals($models[0], '\\Fargonse\\Annotate\\Tests\\TestModels\\Test');
+        $this->assertArrayHasKey( "file", $models[0] );
+
+        $this->assertArrayHasKey( "class", $models[0] );
+        
+        $this->assertEquals($models[0]["class"], '\\Fargonse\\Annotate\\Tests\\TestModels\\Test');
     }
 
 }
