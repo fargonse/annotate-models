@@ -3,6 +3,7 @@ namespace Fargonse\Annotate\Console;
 
 use Illuminate\Console\Command;
 use Fargonse\Annotate\Traits\ModelsReader;
+use Fargonse\Annotate\Traits\ModelsProcessor;
 
 class ProcessCommand extends Command
 {
@@ -15,17 +16,7 @@ class ProcessCommand extends Command
         // Get all Models
         $models = ( new ModelsReader )->getAllModelsFromPath();
 
-        dd($models);
-
         //Annotate Models
-        /*
-            foreach models{
-                tabla = ObtenerTabla(model)
-                estructura = ObtenerEstructura(tabla)
-                descripcion = ConvertirEstructuraATexto( estructura )
-                ActualizarArchivoModelo( descripcion )
-            }
-        */
-
+        ( new ModelsProcessor($models) )->processModels();
     }
 }
