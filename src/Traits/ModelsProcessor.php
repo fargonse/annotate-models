@@ -30,10 +30,12 @@ class ModelsProcessor
      */
     public function processModels()
     {
-        dd( $this->models );
+        foreach ($this->models as $model) {
+            $table = (new ModelTableNameGetter( $model["class"] ))->getTableName();
+        }
         /*
             foreach models{
-                tabla = ObtenerTabla(model)
+                tabla = ObtenerTabla(model) ==> OK
                 estructura = ObtenerEstructura(tabla)
                 descripcion = ConvertirEstructuraATexto( estructura )
                 ActualizarArchivoModelo( descripcion )
