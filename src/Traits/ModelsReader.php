@@ -46,10 +46,13 @@ class ModelsReader
     {
         $models = $this->filesReader->getFilesFromPath()
             ->map(function ($file) {
-                return $this->classNameBuilder->BuildClassNameFromFile($file);
+                return [
+                    "file" => $file,
+                    "class" => $this->classNameBuilder->BuildClassNameFromFile($file)
+                ];
             })
-            ->filter(function ($class) {
-                return $this->modelDeterminer->classIsModel($class);
+            ->filter(function ($item) {
+                return $this->modelDeterminer->classIsModel($item["class"]);
             });
 
         return $models->values();
