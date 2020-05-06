@@ -36,13 +36,15 @@ class ModelsProcessor
         foreach ($this->models as $model) {
             $table = ModelTableNameGetter::getTableName( $model["class"] );
 
-            $tableStructure = $schemaGetter->getTableSchema( $table );
+            $tableSchema = $schemaGetter->getTableSchema( $table );
+
+            $modelAnnotation = ModelSchemaAnnotationGenerator::generateAnnotationFromTableSchema( $tableSchema );
         }
         /*
             foreach models{
                 tabla = ObtenerTabla(model) ==> OK
-                estructura = ObtenerEstructura(tabla)
-                descripcion = ConvertirEstructuraATexto( estructura )
+                estructura = ObtenerEstructura(tabla) ==> TODO
+                descripcion = ConvertirEstructuraATexto( estructura ) ==> OK
                 ActualizarArchivoModelo( descripcion )
             }
         */
