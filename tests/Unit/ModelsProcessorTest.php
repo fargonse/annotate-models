@@ -27,7 +27,7 @@ class ModelsProcessorTest extends TestCase
     }
 
 
-
+    /** @test */
     public function convertTableSchemaToString()
     {
         $schemaGetter = new SchemaGetterTest;
@@ -39,9 +39,9 @@ class ModelsProcessorTest extends TestCase
         $expectedAnnotation = '/**
  * ANNOTATION:
  * 
- * @property    $id                  Type: integer            Length:            Precision:          Nullable: FALSE     PK: TRUE      Default:
- * @property    $name                Type: varchar            Length: 255        Precision:          Nullable: TRUE      PK: FALSE     Default: NULL
- * @property    $created_at          Type: datetime           Length:            Precision:          Nullable: TRUE      PK: FALSE     Default: NULL
+ * @property    $id                      Type: integer            Length:             Precision:          Nullable: false     PK: true       Default:            
+ * @property    $name                    Type: varchar            Length: 255         Precision:          Nullable: true      PK: false      Default: null       
+ * @property    $created_at              Type: datetime           Length:             Precision:          Nullable: true      PK: false      Default: null       
  * 
  * END ANNOTATION
 */';
@@ -51,16 +51,6 @@ class ModelsProcessorTest extends TestCase
 
 }
 
-/**
- * ANNOTATION:
- * 
- * @property    $id                  Type: integer            Length:            Precision:          Nullable: FALSE     PK: TRUE      Default:
- * @property    $name                Type: varchar            Length: 255        Precision:          Nullable: TRUE      PK: FALSE     Default: NULL
- * @property    $created_at          Type: datetime           Length:            Precision:          Nullable: TRUE      PK: FALSE     Default: NULL
- * 
- * END ANNOTATION
-*/
-
 class SchemaGetterTest implements \Fargonse\Annotate\Builders\Interfaces\SchemaGetterInterface{
     public function getTableSchema(string $table): Collection{
         $tableStructure = [
@@ -68,7 +58,7 @@ class SchemaGetterTest implements \Fargonse\Annotate\Builders\Interfaces\SchemaG
                 "name" => "id",
                 "type" => "integer",
                 "length" => "",
-                "precision" => "null",
+                "precision" => "",
                 "nullable" => "false",
                 "pk" => "true",
                 "default" => "",
@@ -77,7 +67,7 @@ class SchemaGetterTest implements \Fargonse\Annotate\Builders\Interfaces\SchemaG
                 "name" => "name",
                 "type" => "varchar",
                 "length" => "255",
-                "precision" => "null",
+                "precision" => "",
                 "nullable" => "true",
                 "pk" => "false",
                 "default" => "null",
