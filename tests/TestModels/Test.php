@@ -1,9 +1,9 @@
 <?php
-    namespace Fargonse\Annotate\Tests\TestModels;
+namespace Fargonse\Annotate\Tests\TestModels;
 
-    use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
-    class Test extends Model
-    {
-           
-    }
+class Test extends Model
+{
+
+}

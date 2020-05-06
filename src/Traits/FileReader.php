@@ -5,7 +5,7 @@ namespace Fargonse\Annotate\Traits;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 
-class FilesReader
+class FileReader
 {
     /**
      * Path to find files
@@ -14,7 +14,7 @@ class FilesReader
 
     
     /**
-     * Create a new FilesReader instance
+     * Create a new FileReader instance
      *
      *
      * @param   String  $path
