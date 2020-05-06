@@ -7,9 +7,9 @@ use Illuminate\Support\Collection;
 class ModelsReader
 {
     /**
-     * FilesReader Class - Get the file from directory
+     * FileReader Class - Get the file from directory
      */
-    protected $filesReader = null;
+    protected $fileReader = null;
 
     /**
      * ClassNameBuilder Class - Builds the name of the class from a filename
@@ -31,7 +31,7 @@ class ModelsReader
      */
     public function __construct($container = null, $path = null)
     {
-        $this->filesReader = new FilesReader( $path );
+        $this->fileReader = new FileReader( $path );
         $this->classNameBuilder = new ClassNameBuilder( $container );
         $this->modelDeterminer = new ModelDeterminer();
     }
@@ -44,7 +44,7 @@ class ModelsReader
      */
     public function getAllModelsFromPath(): Collection
     {
-        $models = $this->filesReader->getFilesFromPath()
+        $models = $this->fileReader->getFilesFromPath()
             ->map(function ($file) {
                 return [
                     "file" => $file,

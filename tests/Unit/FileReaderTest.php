@@ -2,15 +2,15 @@
 
 namespace Fargonse\Annotate\Tests\Unit;
 
-use Fargonse\Annotate\Traits\FilesReader;
+use Fargonse\Annotate\Traits\FileReader;
 use Fargonse\Annotate\Tests\TestCase;
 
-class FilesReaderTest extends TestCase
+class FileReaderTest extends TestCase
 {
     /** @test */
     public function getFilesFromPath()
     {
-        $fileReader = new FilesReader( 'tests/TestModels' );
+        $fileReader = new FileReader( 'tests/TestModels' );
 
         $files = $fileReader->getFilesFromPath();
 
